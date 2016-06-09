@@ -1,0 +1,30 @@
+﻿<div>
+    <h4 class="h4">{{user.login}}</h4>
+    {{error}}
+    <img src="{{user.avatar_url}}" title="{{user.login}}" width="100" />
+    <h6><a href="{{user.html_url}}">GitHub page</a></h6>
+    Order By:
+    <select ng-model="repoSortOrder">
+        <option value="+name">Name</option>
+        <option value="+language">Language</option>
+        <option value="-size">Size descending</option>
+    </select>
+    <table class="table table-striped ">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Language</th>
+                <th>Size</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="repo in user.repos| orderBy:repoSortOrder">
+                <td><a href="#/repo/{{user.login}}/{{repo.name}}">{{repo.name}}</a></td>
+                <td>{{repo.language}}</td>
+                <td>{{repo.size | number}}</td>
+            </tr>
+        </tbody>
+
+    </table>
+    <a href="#/main">Back to Search</a>
+</div>
